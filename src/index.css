@@ -1,13 +1,145 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Inter", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 100px;
+  padding-right: 100px;
+  min-height: 100vh; /* Menetapkan tinggi minimum container sesuai tinggi viewport */
+}
+
+hr {
+  width: calc(100% + 200px); /* Menyesuaikan lebar dengan padding container */
+  margin: 20px -100px; /* Mengatur margin negatif setengah dari padding container */
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.more {
+  margin-top: 20px;
+  width: 350px;
+  padding: 10px;
+  background-color: white;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  font-size: 150%;
+  margin-bottom: 20px;
+}
+
+.header p {
+  width: 65%;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-container button {
+  margin-left: auto;
+  width: 150px;
+  padding: 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.filter-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.filter-open,
+.filter-price,
+.filter-cat {
+  border-bottom: 1px solid grey;
+  padding-bottom: 3px;
+  color: #003366;
+}
+
+.filter-price select,
+.filter-cat select {
+  color: #003366;
+  border: none;
+}
+
+.restaurant-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurants-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.restaurant-cards {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch; /* Mengisi tinggi maksimum yang sama */
+  border: 1px solid #ddd;
+  padding: 20px;
+  width: 250px;
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column; /* Mengatur elemen anak sebagai kolom */
+  border: none;
+}
+
+.restaurant-image {
+  width: 100%; /* Mengatur lebar gambar agar 100% dari lebar kontainer */
+  height: 150px; /* Sesuaikan tinggi gambar sesuai keinginan */
+  object-fit: cover; /* Mengatur bagaimana gambar menyesuaikan dengan lebar dan tinggi yang telah ditetapkan */
+}
+
+.card-content {
+  flex: 1; /* Mengisi ruang kosong untuk semua elemen anak */
+  display: flex;
+  flex-direction: column;
+}
+
+.info {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.category-price {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.cat-price {
+  display: flex;
+}
+
+.cat-price span {
+  margin-right: 5px;
+}
+
+.status {
+  margin-left: auto;
+}
+
+.restaurant-cards button {
+  background-color: #003366;
+  color: white;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.restaurant-cards button:hover {
+  background-color: #00458a;
 }
