@@ -122,10 +122,14 @@ hr {
 
 .cat-price {
   display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-.cat-price span {
+.cat-price p {
   margin-right: 5px;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .status {

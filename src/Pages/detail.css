@@ -1,0 +1,44 @@
+.body {
+  padding-left: 100px;
+  padding-right: 100px;
+  min-height: 90vh; /* Menetapkan tinggi minimum container sesuai tinggi viewport */
+}
+
+.body button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  padding: 10px;
+  background-color: #003366;
+  color: white;
+  cursor: pointer;
+}
+
+.body button:hover {
+  background-color: #00458a;
+}
+
+.restaurant-detail {
+  display: flex;
+  flex-direction: row;
+}
+
+.image-container {
+  border-right: 1px solid rgba(0, 0, 0, 0.8);
+  max-width: 700px;
+  margin-right: 20px;
+  padding-right: 200px;
+}
+
+.image-container img {
+  width: auto;
+  height: 500px;
+}
+
+.open-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 500px;
+}
