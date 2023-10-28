@@ -69,11 +69,11 @@ function FilterNavigation() {
             <option value="defaultPrice" disabled>
               Price
             </option>
-            <option value="0">0 - 50.000</option>
-            <option value="50">50.000 - 100.000</option>
-            <option value="100">100.000 - 200.000</option>
-            <option value="200">200.000 - 300.000</option>
-            <option value="300">300.000 - 400.000</option>
+            <option value="0">IDR 0+</option>
+            <option value="50000">IDR 50.000+</option>
+            <option value="100000">IDR 100.000+</option>
+            <option value="200000">IDR 200.000+</option>
+            <option value="300000">IDR 300.000+</option>
           </select>
         </div>
         <div className="filter-cat">
@@ -81,8 +81,12 @@ function FilterNavigation() {
             <option value="defaultCategory" disabled>
               Categories
             </option>
-            <option value="seafood">Seafood</option>
-            <option value="chinese">Chinese</option>
+            <option value="cafe">Cafe</option>
+            <option value="indonesian">Indonesian Food</option>
+            <option value="japanese">Japanese Food</option>
+            <option value="mexican">Mexican Food</option>
+            <option value="arabian">Arabian Food</option>
+            <option value="ayce">All You Can Eat</option>
           </select>
         </div>
       </div>

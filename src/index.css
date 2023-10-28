@@ -8,12 +8,12 @@ body {
   justify-content: center;
   padding-left: 100px;
   padding-right: 100px;
-  min-height: 100vh; /* Menetapkan tinggi minimum container sesuai tinggi viewport */
+  min-height: 100vh;
 }
 
 hr {
-  width: calc(100% + 200px); /* Menyesuaikan lebar dengan padding container */
-  margin: 20px -100px; /* Mengatur margin negatif setengah dari padding container */
+  width: calc(100% + 200px);
+  margin: 20px -100px;
   border: none;
   height: 1px;
   background-color: #ccc;
@@ -69,6 +69,7 @@ hr {
 .filter-cat select {
   color: #003366;
   border: none;
+  font-size: 12pt;
 }
 
 .restaurant-list {
@@ -85,7 +86,7 @@ hr {
 .restaurant-cards {
   display: flex;
   justify-content: space-around;
-  align-items: stretch; /* Mengisi tinggi maksimum yang sama */
+  align-items: stretch;
   border: 1px solid #ddd;
   padding: 20px;
   width: 250px;
@@ -93,18 +94,18 @@ hr {
   text-align: center;
   position: relative;
   display: flex;
-  flex-direction: column; /* Mengatur elemen anak sebagai kolom */
+  flex-direction: column;
   border: none;
 }
 
 .restaurant-image {
-  width: 100%; /* Mengatur lebar gambar agar 100% dari lebar kontainer */
-  height: 150px; /* Sesuaikan tinggi gambar sesuai keinginan */
-  object-fit: cover; /* Mengatur bagaimana gambar menyesuaikan dengan lebar dan tinggi yang telah ditetapkan */
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
 }
 
 .card-content {
-  flex: 1; /* Mengisi ruang kosong untuk semua elemen anak */
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
