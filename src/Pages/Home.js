@@ -5,13 +5,18 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [restaurants, setRestaurants] = useState([]);
   const [visibleRestaurants, setVisibleRestaurants] = useState(8);
+  const [isOpenNow, setIsOpenNow] = useState(false);
+  const [minPrice, setMinPrice] = useState("");
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(
-          "https://my-json-server.typicode.com/mnhentihu/restaurant-api/db"
-        );
+        const url = category
+          ? `https://my-json-server.typicode.com/mnhentihu/restaurant-api/db?category=${category}`
+          : "https://my-json-server.typicode.com/mnhentihu/restaurant-api/db";
+
+        const res = await fetch(url);
 
         if (!res.ok) throw new Error("Failed to fetch data");
 
@@ -23,19 +28,52 @@ export default function Home() {
     };
 
     fetchData();
-  }, []);
+  }, [category]);
 
   function handleLoadMore() {
     setVisibleRestaurants((visibleRestaurants) => visibleRestaurants + 4);
   }
 
+  function clearFilters() {
+    setIsOpenNow(false);
+    setMinPrice("");
+    setCategory("");
+  }
+
+  const filteredRestaurants = restaurants
+    .filter(
+      (restaurant) =>
+        !isOpenNow ||
+        (parseInt(restaurant.open.split(":")[0]) <= new Date().getHours() &&
+          parseInt(restaurant.close.split(":")[0]) > new Date().getHours())
+    )
+    .filter(
+      (restaurant) =>
+        minPrice === "" || parseInt(restaurant.min_price) >= parseInt(minPrice)
+    )
+    .filter(
+      (restaurant) =>
+        category === "" ||
+        restaurant.cat.toLowerCase() === category.toLowerCase()
+    );
+
   return (
     <div className="container">
       <Header />
       <hr />
-      <FilterNavigation className="filter" />
+      <FilterNavigation
+        isOpenNow={isOpenNow}
+        setIsOpenNow={setIsOpenNow}
+        minPrice={minPrice}
+        setMinPrice={setMinPrice}
+        category={category}
+        setCategory={setCategory}
+        clearFilters={clearFilters}
+      />
       <hr />
-      <RestaurantList restaurants={restaurants.slice(0, visibleRestaurants)} />
+      <RestaurantList
+        restaurants={filteredRestaurants.slice(0, visibleRestaurants)}
+      />
       <button className="more" onClick={handleLoadMore}>
         LOAD MORE
       </button>
@@ -55,20 +93,33 @@ function Header() {
   );
 }
 
-function FilterNavigation() {
+function FilterNavigation({
+  isOpenNow,
+  setIsOpenNow,
+  minPrice,
+  setMinPrice,
+  category,
+  setCategory,
+  clearFilters,
+}) {
   return (
     <div className="filter-container">
       <div className="filter-nav">
         <span>Filter By:</span>
         <div className="filter-open">
-          <input type="radio" />
+          <input
+            type="checkbox"
+            checked={isOpenNow}
+            onChange={(e) => setIsOpenNow(e.target.checked)}
+          />
           <label>Open Now</label>
         </div>
         <div className="filter-price">
-          <select defaultValue="defaultPrice">
-            <option value="defaultPrice" disabled>
-              Price
-            </option>
+          <select
+            value={minPrice}
+            onChange={(e) => setMinPrice(e.target.value)}
+          >
+            <option value="">Price</option>
             <option value="0">IDR 0+</option>
             <option value="50000">IDR 50.000+</option>
             <option value="100000">IDR 100.000+</option>
@@ -77,10 +128,11 @@ function FilterNavigation() {
           </select>
         </div>
         <div className="filter-cat">
-          <select defaultValue="defaultCategory">
-            <option value="defaultCategory" disabled>
-              Categories
-            </option>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="">Categories</option>
             <option value="cafe">Cafe</option>
             <option value="indonesian">Indonesian Food</option>
             <option value="japanese">Japanese Food</option>
@@ -90,7 +142,7 @@ function FilterNavigation() {
           </select>
         </div>
       </div>
-      <button>CLEAR ALL</button>
+      <button onClick={clearFilters}>CLEAR ALL</button>
     </div>
   );
 }
